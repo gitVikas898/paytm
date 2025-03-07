@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { LOGO_URL } from "../constants/utils";
+import LOGO_URL  from "../assets/logo.jpg";
 import { IoMenu } from "react-icons/io5";
 const Navbax = () => {
   const [isMenu, setisMenu] = useState(false);
   return (
-    <nav className="bg-white px-4 relative py-4 shadow-md rounded-sm container mx-auto flex justify-between">
+    <nav className="bg-white px-4 relative py-4 shadow-md rounded-sm  mx-auto flex justify-between">
       <div>
-        <img src={LOGO_URL} alt="LOGO" />
+        <h1 className="text-2xl font-semibold"><span className="font-merriweather font-semibold text-blue-500">Mobile</span>Pe</h1>
       </div>
       {/* Desktop menu */}
       <div className="hidden md:block">
