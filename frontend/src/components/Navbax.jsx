@@ -1,0 +1,38 @@
+import React, { useState } from "react";
+import { LOGO_URL } from "../constants/utils";
+import { IoMenu } from "react-icons/io5";
+const Navbax = () => {
+  const [isMenu, setisMenu] = useState(false);
+  return (
+    <nav className="bg-white px-4 relative py-4 shadow-md rounded-sm container mx-auto flex justify-between">
+      <div>
+        <img src={LOGO_URL} alt="LOGO" />
+      </div>
+      {/* Desktop menu */}
+      <div className="hidden md:block">
+        <ul className="flex gap-4 font-merriweather font-semibold items-center justify-between">
+          <li>Home</li>
+          <li>About</li>
+          <li>Sign in</li>
+        </ul>
+      </div>
+      {<button className="md:hidden" onClick={() => setisMenu(!isMenu)}>
+          <IoMenu size={30} className="cursor-pointer" />
+        </button>}
+      <div
+      className={`
+        fixed md:hidden top-[3.90rem] right-0 w-32 p-2 bg-white min-h-[calc(100vh-4.5rem)]
+        transform transition-transform duration-300 ease-in-out shadow-lg
+        ${isMenu ? 'translate-x-0' : 'translate-x-full'}
+      `}>
+        <ul className="flex flex-col gap-4 font-merriweather font-semibold items-center justify-between">
+          <li>Home</li>
+          <li>About</li>
+          <li>Sign in</li>
+        </ul>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbax;
