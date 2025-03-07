@@ -1,21 +1,13 @@
 import './App.css'
-import Landing from './pages/Landing'
-import Signin from './pages/Signin'
-import Signup from './pages/Signup'
-import Navbax from './components/Navbax'
-import Dashboard from './pages/Dashboard'
+import {RouterProvider} from 'react-router-dom'
+import router from './router/router'
+import Layout from './layout/Layout'
 function App() {
-  
 
   return (
-    <>
-    <Navbax/>
-    {/* {<Landing/>} */}
-      {/* <Signup/>
-      <Signin/>
-       */}
-       <Dashboard/>
-    </>
+    <RouterProvider router={router}>
+      <Layout/>
+    </RouterProvider>
   )
 }
 

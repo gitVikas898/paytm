@@ -3,7 +3,7 @@ import Input from '../components/Input'
 import Heading from '../components/Heading'
 import Subheading from '../components/Subheading'
 import Button from '../components/Button'
-
+import { Link } from 'react-router-dom'
 const Signin = () => {
   return (
     <div className='grid min-h-screen place-items-center'>
@@ -20,7 +20,7 @@ const Signin = () => {
             <Button title={"Sign in"} type={"gradient"}/>
           </div>
           <div className='flex gap-2 items-center justify-center'>
-            <Subheading text={"Not a user ? "}/><span className='font-xl font-bold underline cursor-pointer'>Sign up now</span>
+            <Subheading text={"Not a user ? "}/><span className='font-xl font-bold underline cursor-pointer'><Link to={"/signup"}>Sign up now</Link></span>
           </div>
       </form>
     </div>

@@ -4,6 +4,7 @@ import Card from '../components/Card'
 import User from '../components/User'
 import { useState } from "react";
 import Popup  from "../components/Popup";
+import Payment from '../components/Payment';
 const Dashboard = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   return (
@@ -15,7 +16,7 @@ const Dashboard = () => {
             </Card>
         </div>
         <Popup isOpen={isPopupOpen} onClose={()=>setIsPopupOpen(!isPopupOpen)}>
-            
+            <Payment balance={"100000"}/>
         </Popup>
     </section>
   )
