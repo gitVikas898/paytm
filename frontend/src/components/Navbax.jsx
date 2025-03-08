@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import LOGO_URL from "../assets/logo.jpg";
 import { IoMenu } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import UserData from "./UserData";
 const Navbax = () => {
   const [isMenu, setisMenu] = useState(false);
+  const user = useSelector((state)=>state.user.user);
+
   return (
     <nav className="bg-white px-4 relative py-4 shadow-md rounded-sm  mx-auto flex justify-between">
       <div>
@@ -24,7 +28,7 @@ const Navbax = () => {
             <Link to={"/about"}>About</Link>
           </li>
           <li>
-            <Link to={"/signin"}>Sign in</Link>
+            {!user ? (<Link to={"/signin"}>Sign in</Link>):<UserData name={user.name} email={user.email}/>}
           </li>
         </ul>
       </div>

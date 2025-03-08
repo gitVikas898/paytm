@@ -149,6 +149,11 @@ router.post("/signin", async function (req, res) {
     res.json({
       message: "User logged in Succesfully",
       token,
+      user:{
+        id:user._id,
+        name:user.firstName+" "+ user.lastName,
+        email:user.username
+      }
     });
   } catch (error) {
     console.log(error);

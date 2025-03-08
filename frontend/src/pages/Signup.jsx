@@ -3,14 +3,19 @@ import Heading from '../components/Heading'
 import Subheading from '../components/Subheading'
 import Input from '../components/Input'
 import Button from '../components/Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Popup from '../components/Popup'
+import Progress from '../components/Progress'
+
 const Signup = () => {
   
   const[firstName,setFirstName] = useState("");
   const[secondName,setSecondName] = useState("");
   const[email,setEmail] = useState("");
   const[password,setPassword] = useState("");
+  const[showPopup,setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignup = async () => {
     try{
@@ -22,14 +27,15 @@ const Signup = () => {
       });
       console.log(response.data);
       
-    }catch(error){
+      setShowPopup(true);
       
+      setInterval(()=>{
+        setShowPopup(false);
+        navigate("/signin")
+      },3000)
+      
+    }catch(error){
       console.log("Error",error);
-    }finally{
-      setFirstName("")
-      setSecondName("")
-      setEmail("")
-      setPassword("")
     }
   }
 
@@ -49,13 +55,19 @@ const Signup = () => {
           </div>
           <div className='flex items-center justify-center w-full'>
             <Button onClick={()=>{
-                handleSignup()
+                handleSignup();
             }} title={"Sign up"} type={"gradient"}/>
           </div>
           <div className='flex gap-2 items-center justify-center'>
             <Subheading text={"already a user ? "}/><span className='font-xl font-bold underline cursor-pointer'><Link to={"/signin"}>Sign in</Link></span>
           </div>
       </div>
+      <Popup isOpen={showPopup}>
+            <h1 className='text-2xl font-merriweather mb-2'>Sign up Successfull</h1>
+            <p className='font-firesans mb-2'>Redirecting to login page</p>
+            <Progress/>
+      </Popup>
+      
     </div>
   )
 }
