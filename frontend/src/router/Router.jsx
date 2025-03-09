@@ -5,6 +5,7 @@ import Landing from "../pages/Landing"
 import Signin from "../pages/Signin"
 import Signup from "../pages/Signup"
 import Dashboard from "../pages/Dashboard"
+import ProtectedRoute from '../authRoute/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
       }
       ,{
         path :"/dashboard",
-        element:<Dashboard/>
+        element:<ProtectedRoute><Dashboard/></ProtectedRoute>
       }
 
     ]

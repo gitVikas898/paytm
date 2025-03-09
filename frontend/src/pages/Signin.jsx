@@ -3,14 +3,15 @@ import Input from '../components/Input'
 import Heading from '../components/Heading'
 import Subheading from '../components/Subheading'
 import Button from '../components/Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { loginSuccess } from '../store/userSlice'
 
+
 const Signin = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
 
@@ -22,6 +23,8 @@ const Signin = () => {
         });
         console.log(response.data)
         dispatch(loginSuccess(response.data))
+        navigate("/dashboard");
+
       }catch(error){
         console.log(error);
       }

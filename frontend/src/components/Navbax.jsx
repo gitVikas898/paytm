@@ -20,15 +20,15 @@ const Navbax = () => {
       </div>
       {/* Desktop menu */}
       <div className="hidden md:block">
-        <ul className="flex gap-4 font-merriweather font-semibold items-center justify-between">
+        <ul className="flex gap-4 font-merriweather font-bold items-center justify-between">
           <li>
-            <Link to={"/"}>Home</Link>
+            <Link to={"/"} className=" hover:text-orange-400">Home</Link>
           </li>
           <li>
-            <Link to={"/about"}>About</Link>
+            <Link to={"/about"} className=" hover:text-orange-400">About</Link>
           </li>
           <li>
-            {!user ? (<Link to={"/signin"}>Sign in</Link>):<UserData name={user.name} email={user.email}/>}
+            {!user ? (<Link to={"/signin"} className=" hover:text-orange-400">Sign in</Link>):<UserData name={user.name} email={user.email}/>}
           </li>
         </ul>
       </div>
