@@ -6,7 +6,8 @@ import Popup from "../components/Popup";
 import Payment from "../components/Payment";
 import axios from "axios";
 import { useSelector } from "react-redux";
-
+import Heading from "../components/Heading"
+import UserCard from "../components/UserCard";
 const Dashboard = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [balance, setBalance] = useState(null);
@@ -14,30 +15,31 @@ const Dashboard = () => {
   const user = useSelector((store) => store?.user?.user);
   const token = useSelector((store) => store?.user?.token);
 
-  useEffect(() => {
-    const getBalance = async () => {
-      if (!user?.id || !token) return; // Prevent API call if user/token is missing
-      console.log("User ID:", user?.id);
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/api/v1/account/balance",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            params: {
-              userId: user?.id,
-            },
-          }
-        );
-        // Directly log response balance
-        console.log("Fetched Balance:", response.data?.balance);
-        setBalance(response.data?.balance);
-      } catch (error) {
-        console.error("Error fetching balance:", error);
-      }
-    };
+  const getBalance = async () => {
+    if (!user?.id || !token) return; // Prevent API call if user/token is missing
+    console.log("User ID:", user?.id);
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/api/v1/account/balance",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            userId: user?.id,
+          },
+        }
+      );
+      // Directly log response balance
+      console.log("Fetched Balance:", response.data?.balance);
+      setBalance(response.data?.balance);
+    } catch (error) {
+      console.error("Error fetching balance:", error);
+    }
+  };
 
+  useEffect(() => {
+   
     const getContacts = async () => {
       try {
         const response = await axios.get(
@@ -52,14 +54,17 @@ const Dashboard = () => {
     };
     getContacts();
     getBalance();
-  }, [user, token]); // Runs only when `user` or `token` changes
+  }, []); 
   return (
     <section>
       <Search />
+      <UserCard name={user.name} email={user.email} balance={balance?.toFixed(2) } getBalance={getBalance}/>
       <div className="grid gap-2 p-8">
+        <Heading label={"Contacts"}/>
         {contacts.map((user) => {
           return (
             <>
+             
               <Card key={user.id}>
                 <User
                   field1={user.firstName}

@@ -14,6 +14,11 @@ const Button = ({ title, type,onClick }) => {
           {title}
         </button>
       )}
+       {type === "green" && (
+        <button onClick={onClick} className=" w-full py-2 text-white text-lg font-semibold rounded-lg bg-gradient-to-r from-green-700 to-green-500 hover:opacity-90 active:scale-95 transition duration-300">
+          {title}
+        </button>
+      )}
     </>
   );
 };

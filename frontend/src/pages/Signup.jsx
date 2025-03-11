@@ -59,7 +59,7 @@ const Signup = () => {
             }} title={"Sign up"} type={"gradient"}/>
           </div>
           <div className='flex gap-2 items-center justify-center'>
-            <Subheading text={"already a user ? "}/><span className='font-xl font-bold underline cursor-pointer'><Link to={"/signin"}>Sign in</Link></span>
+            <Subheading text={"already a user ? "}/><span className='font-xl font-bold underline cursor-pointer'><Link to={"/signin"} className='hover:text-orange-500'>Sign in</Link></span>
           </div>
       </div>
       <Popup isOpen={showPopup}>
