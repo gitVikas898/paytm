@@ -43,7 +43,9 @@ const Dashboard = () => {
         const response = await axios.get(
           "http://localhost:3000/api/v1/user/bulk"
         );
-        setContacts(response.data?.user.filter((users)=>users.id !== user.id));
+        setContacts(
+          response.data?.user.filter((users) => users.id !== user.id)
+        );
       } catch (error) {
         console.log(error);
       }
@@ -54,22 +56,27 @@ const Dashboard = () => {
   return (
     <section>
       <Search />
-      <div className="grid gap-2 p-4">
+      <div className="grid gap-2 p-8">
         {contacts.map((user) => {
           return (
-            <Card key={user.id}>
-              <User
-                field1={user.firstName}
-                isPopupOpen={isPopupOpen}
-                setIsPopupOpen={setIsPopupOpen}
-              />
-            </Card>
+            <>
+              <Card key={user.id}>
+                <User
+                  field1={user.firstName}
+                  isPopupOpen={isPopupOpen}
+                  setIsPopupOpen={setIsPopupOpen}
+                />
+                <Popup
+                  isOpen={isPopupOpen}
+                  onClose={() => setIsPopupOpen(!isPopupOpen)}
+                >
+                  <Payment balance={balance} token={token} to={user.id} />
+                </Popup>
+              </Card>
+            </>
           );
         })}
       </div>
-      <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(!isPopupOpen)}>
-        <Payment balance={balance} />
-      </Popup>
     </section>
   );
 };
