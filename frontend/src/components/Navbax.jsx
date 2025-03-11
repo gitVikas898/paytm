@@ -52,7 +52,7 @@ const Navbax = () => {
             <Link to={"/about"}>About</Link>
           </li>
           <li>
-            <Link to={"/signin"}>Sign in</Link>
+            {!user ? (<Link to={"/signin"} className=" hover:text-orange-400">Sign in</Link>):<UserData name={user.name} email={user.email}/>}
           </li>
         </ul>
       </div>

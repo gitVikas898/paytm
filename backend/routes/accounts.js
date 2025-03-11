@@ -6,9 +6,12 @@ const router = express.Router();
 
 
 router.get("/balance",authMiddleware,async function (req,res) {
+
+    const { userId } = req.query; 
+
     try{
         const accountBalance = await Account.findOne({
-            userId:req.userId
+            userId:userId
         });
         res.json({
             message:"Balanced Fetched Successfully",
