@@ -7,10 +7,14 @@ import Button from './Button'
 const UserCard = ({balance,name,email,getBalance}) => {
   return (
     <Card>
-        <h1 className='text-2xl font-merriweather'>{balance}</h1>
-        <h1 className='font-merriweather'>{name}</h1>
-        <h1 className='font-merriweather'>{email}</h1>
-        <div className='max-w-[400px]'><Button type={"green"} title={"Fetch Balance"} onClick={getBalance}/></div>
+        <div className='flex justify-between p-4'>
+          <div className='grid gap 2'>
+            <h1 className='text-2xl font-merriweather'>Balance : {balance}</h1>
+            <h1 className='font-merriweather'>{name}</h1>
+            <h1 className='font-merriweather'>{email}</h1>
+          </div>
+          <div className='w-[200px]'><Button type={"green"} title={"Fetch Balance"} onClick={getBalance}/></div>
+        </div>
     </Card>
   )
 }
