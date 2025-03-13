@@ -58,7 +58,7 @@ const Dashboard = () => {
                   isOpen={activePopupUser === user.id}
                   onClose={() => setActivePopupUser(null)}
                 >
-                  <Payment isOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} token={token} to={user.id} />
+                  <Payment isOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} token={token} to={user.id} setActivePopupUser={setActivePopupUser} />
                 </Popup>
               </Card>
             </>
