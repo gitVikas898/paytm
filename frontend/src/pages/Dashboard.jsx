@@ -9,9 +9,10 @@ import { useSelector } from "react-redux";
 import GradientHeading from '../components/GradientHeading'
 import UserCard from "../components/UserCard";
 
+
 const Dashboard = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
+  const [searchQuery,setSearchQuery] = useState("");
   const [balance, setBalance] = useState(null);
   const [contacts, setContacts] = useState([]);
   const user = useSelector((store) => store?.user?.user);
@@ -39,7 +40,7 @@ const Dashboard = () => {
     } catch (error) {
       console.error("Error fetching balance:", error);
     }
-  }, [user?.id, token]); // Only recreate if user.id or token changes
+  }, [user?.id, token]); 
 
   useEffect(() => {
     const getContacts = async () => {
@@ -57,14 +58,20 @@ const Dashboard = () => {
     
     getContacts();
     getBalance();
-  }, [getBalance]); 
+  }, [user?.id,getBalance]); 
+
+
+  const filteredContacts = contacts.filter((user) =>
+    user.firstName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <section className="p-10 md:p-20 min-h-screen">
-      <Search />
+      <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
       <UserCard name={user.name} email={user.email} balance={balance?.toFixed(2) } getBalance={getBalance}/>
       <GradientHeading label={"Contacts"}/>
       <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {contacts.map((user) => {
+        {filteredContacts.map((user) => {
           return (
             <>
               <Card key={user.id}>
