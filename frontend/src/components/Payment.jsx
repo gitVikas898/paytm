@@ -3,13 +3,6 @@ import Button from "./Button";
 import axios from "axios";
 import Popup from "./Popup";
 import { FaCircleCheck } from "react-icons/fa6";
-import Progress from "./Progress"
-
-
-
-
-
-
 
 const Payment = ({ token, to , isOpen , setIsPopupOpen}) => {
   console.log;
@@ -43,6 +36,9 @@ const Payment = ({ token, to , isOpen , setIsPopupOpen}) => {
             onClick={() => {
               handlePay();
               setIsPopupOpen(!isOpen)
+             setTimeout(()=>{
+              setIsPopupOpen(isOpen)
+             },3000)
             }}
             type={"gradient"}
           />
