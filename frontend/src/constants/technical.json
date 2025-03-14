@@ -1,0 +1,19 @@
+[
+    {
+      "title": "Secure API Authentication",
+      "description": "JWT-based token authentication secures all API endpoints."
+    },
+    {
+      "title": "Real-time Updates",
+      "description": "Balance and transaction data update in real-time after transfers."
+    },
+    {
+      "title": "Responsive Design",
+      "description": "The interface adapts seamlessly across desktop and mobile devices."
+    },
+    {
+      "title": "Error Handling",
+      "description": "Comprehensive error handling ensures users receive clear feedback."
+    }
+  ]
+  
