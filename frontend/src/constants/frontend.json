@@ -1,0 +1,14 @@
+[
+    {
+      "title": "React",
+      "description": "Our frontend is built with React, creating a dynamic and responsive user interface."
+    },
+    {
+      "title": "Component Reusability",
+      "description": "Reusable components (Cards, User profiles, Search functionality, etc.) that maintain consistent design patterns throughout the application."
+    },
+    {
+      "title": "Redux",
+      "description": "For state management, we implemented Redux to maintain application state across components, making data flow predictable and debugging easier."
+    }
+]

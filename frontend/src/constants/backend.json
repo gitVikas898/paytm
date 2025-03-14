@@ -1,0 +1,18 @@
+[
+    {
+        "title":"Express.js",
+        "description":"Built a robust API using Express.js, creating efficient endpoints for user authentication, balance queries, and payment processing"
+    },
+    {
+        "title":"MongoDB",
+        "description":"NoSQL database solution provides flexible data storage while maintaining relationships between users and transactions"
+    },
+    {
+        "title":"Transaction Support",
+        "description":"Implemented MongoDB transactions to ensure payment operations are atomic and consistent, preventing partial transfers or data corruption"
+    },
+    {
+        "title":"Express.js",
+        "description":"We built a robust API using Express.js, creating efficient endpoints for user authentication, balance queries, and payment processing"
+    }
+]
