@@ -11,12 +11,14 @@ const Navbax = () => {
   return (
     <nav className="bg-white px-4 relative py-4 shadow-md rounded-sm  mx-auto flex justify-between">
       <div>
-        <h1 className="text-2xl font-semibold">
-          <span className="font-merriweather font-semibold text-blue-500">
-            Mobile
-          </span>
-          Pe
-        </h1>
+        <Link to={"/"}>
+          <h1 className="text-2xl font-semibold">
+            <span className="font-merriweather font-semibold text-blue-500">
+              Mobile
+            </span>
+            Pe
+          </h1>
+        </Link>
       </div>
       {/* Desktop menu */}
       <div className="hidden md:block">
