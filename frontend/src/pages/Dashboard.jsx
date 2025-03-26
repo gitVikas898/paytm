@@ -21,7 +21,7 @@ const Dashboard = () => {
     const getContacts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/user/bulk"
+          "https://paytm-production-d799.up.railway.app/api/v1/user/bulk"
         );
         setContacts(
           response.data?.user?.filter((users) => users.id !== user?.id)

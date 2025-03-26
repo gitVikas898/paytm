@@ -9,7 +9,7 @@ const Payment = ({ token, to , isOpen , setIsPopupOpen,setActivePopupUser}) => {
   const [amount, setAmount] = useState(0);
   const handlePay = async () => {
     const response = await axios.post(
-      "http://localhost:3000/api/v1/account/transfer",
+      "https://paytm-production-d799.up.railway.app/api/v1/account/transfer",
       { amount, to },
       {
         headers: {
