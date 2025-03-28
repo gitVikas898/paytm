@@ -1,60 +1,52 @@
 import React, { useState } from "react";
-import LOGO_URL from "../assets/logo.jpg";
 import { IoMenu } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UserData from "./UserData";
-const Navbax = () => {
-  const [isMenu, setisMenu] = useState(false);
-  const user = useSelector((state)=>state.user.user);
+
+const Navbar = () => {
+  const [isMenu, setIsMenu] = useState(false);
+  const user = useSelector((state) => state.user.user);
 
   return (
-    <nav className="bg-white px-4 relative py-4 shadow-md rounded-sm  mx-auto flex justify-between">
-      <div>
-        <Link to={"/"}>
-          <h1 className="text-2xl font-semibold">
-            <span className="font-merriweather font-semibold text-blue-500">
-              Mobile
-            </span>
-            Pe
-          </h1>
-        </Link>
+    <nav className="bg-white px-6 py-4 shadow-md rounded-md mx-auto flex justify-between items-center relative w-full max-w-6xl">
+      <Link to="/" className="text-2xl font-semibold">
+        <span className="font-merriweather text-blue-500">Mobile</span>Pe
+      </Link>
+      
+      {/* Desktop Menu */}
+      <div className="hidden md:flex space-x-6 font-merriweather font-bold">
+        <Link to="/" className="hover:text-orange-400 transition-colors">Home</Link>
+        <Link to="/about" className="hover:text-orange-400 transition-colors">About</Link>
+        {!user ? (
+          <Link to="/signin" className="hover:text-orange-400 transition-colors">Sign in</Link>
+        ) : (
+          <UserData name={user.name} email={user.email} />
+        )}
       </div>
-      {/* Desktop menu */}
-      <div className="hidden md:block">
-        <ul className="flex gap-4 font-merriweather font-bold items-center justify-between">
-          <li>
-            <Link to={"/"} className=" hover:text-orange-400">Home</Link>
-          </li>
-          <li>
-            <Link to={"/about"} className=" hover:text-orange-400">About</Link>
-          </li>
-          <li>
-            {!user ? (<Link to={"/signin"} className=" hover:text-orange-400">Sign in</Link>):<UserData name={user.name} email={user.email}/>}
-          </li>
-        </ul>
-      </div>
-      {
-        <button className="md:hidden" onClick={() => setisMenu(!isMenu)}>
-          <IoMenu size={30} className="cursor-pointer" />
-        </button>
-      }
+      
+      {/* Mobile Menu Button */}
+      <button className="md:hidden" onClick={() => setIsMenu(!isMenu)}>
+        <IoMenu size={30} className="cursor-pointer" />
+      </button>
+      
+      {/* Mobile Menu */}
       <div
-        className={`
-        fixed md:hidden top-[3.90rem] right-0 w-32 p-2 bg-white min-h-[calc(100vh-4.5rem)]
-        transform transition-transform duration-300 ease-in-out shadow-lg
-        ${isMenu ? "translate-x-0" : "translate-x-full"}
-      `}
+        className={`fixed md:hidden top-[4rem] right-0 w-40 p-4 bg-white shadow-lg rounded-l-lg transition-transform duration-300 ease-in-out ${isMenu ? "translate-x-0" : "translate-x-full"}`}
       >
-        <ul className="flex flex-col gap-4 font-merriweather font-semibold items-center justify-between">
+        <ul className="flex flex-col items-center  justify-end space-y-4 font-merriweather font-semibold text-center">
           <li>
-            <Link to={"/"}>Home</Link>
+            <Link to="/" onClick={() => setIsMenu(false)} className="block hover:text-orange-400">Home</Link>
           </li>
           <li>
-            <Link to={"/about"}>About</Link>
+            <Link to="/about" onClick={() => setIsMenu(false)} className="block hover:text-orange-400">About</Link>
           </li>
           <li>
-            {!user ? (<Link to={"/signin"} className=" hover:text-orange-400">Sign in</Link>):<UserData name={user.name} email={user.email}/>}
+            {!user ? (
+              <Link to="/signin" onClick={() => setIsMenu(false)} className="block hover:text-orange-400">Sign in</Link>
+            ) : (
+              <UserData name={user.name} email={user.email} />
+            )}
           </li>
         </ul>
       </div>
@@ -62,4 +54,4 @@ const Navbax = () => {
   );
 };
 
-export default Navbax;
+export default Navbar;

@@ -6,17 +6,17 @@ import Popup from "../components/Popup";
 import Payment from "../components/Payment";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import GradientHeading from '../components/GradientHeading'
+import GradientHeading from "../components/GradientHeading";
 import UserCard from "../components/UserCard";
-
 
 const Dashboard = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [searchQuery,setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [contacts, setContacts] = useState([]);
   const [activePopupUser, setActivePopupUser] = useState(null);
   const user = useSelector((store) => store?.user?.user);
   const token = useSelector((store) => store?.user?.token);
+
   useEffect(() => {
     const getContacts = async () => {
       try {
@@ -30,40 +30,47 @@ const Dashboard = () => {
         console.log(error);
       }
     };
-    
     getContacts();
-  }, [user?.id]); 
-
+  }, [user?.id]);
 
   const filteredContacts = contacts.filter((user) =>
     user.firstName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <section className="p-10 md:p-20 min-h-screen">
-      <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-      <UserCard name={user.name} email={user.email} isOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen}/>
-      <GradientHeading label={"Contacts"}/>
-      <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredContacts.map((user) => {
-          return (
-            <>
-              <Card key={user.id}>
-                <User
-                  field1={user.firstName}
-                  isPopupOpen={activePopupUser === user.id}
-                  setIsPopupOpen={()=>setActivePopupUser(user.id)}
+    <section className="p-6 md:p-10 lg:p-16 min-h-screen">
+      <div className="max-w-5xl mx-auto space-y-6">
+        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <UserCard
+          name={user.name}
+          email={user.email}
+          isOpen={isPopupOpen}
+          setIsPopupOpen={setIsPopupOpen}
+        />
+        <GradientHeading label="Contacts" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredContacts.map((user) => (
+            <Card key={user.id}>
+              <User
+                field1={user.firstName}
+                isPopupOpen={activePopupUser === user.id}
+                setIsPopupOpen={() => setActivePopupUser(user.id)}
+              />
+              <Popup
+                isOpen={activePopupUser === user.id}
+                onClose={() => setActivePopupUser(null)}
+              >
+                <Payment
+                  isOpen={isPopupOpen}
+                  setIsPopupOpen={setIsPopupOpen}
+                  token={token}
+                  to={user.id}
+                  setActivePopupUser={setActivePopupUser}
                 />
-                <Popup
-                  isOpen={activePopupUser === user.id}
-                  onClose={() => setActivePopupUser(null)}
-                >
-                  <Payment isOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} token={token} to={user.id} setActivePopupUser={setActivePopupUser} />
-                </Popup>
-              </Card>
-            </>
-          );
-        })}
+              </Popup>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );

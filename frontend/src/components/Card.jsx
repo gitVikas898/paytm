@@ -1,10 +1,9 @@
 import React from "react";
-import User from "./User";
 
-const Card = ({children}) => {
+const Card = ({ children }) => {
   return (
-    <div className=" bg-gradient-to-br border border-gray-100 from-gray-50 to-gray-100 p-6 rounded-2xl shadow-md m-10">
-        {children}
+    <div className="bg-white border border-gray-200 shadow-lg rounded-2xl p-6 m-4 md:m-6 lg:m-8 transition-all duration-300 hover:shadow-xl flex flex-col">
+      {children}
     </div>
   );
 };
